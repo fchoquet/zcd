@@ -31,7 +31,7 @@ class LocalDataProvider implements DataProviderInterface
     public function getConfiguration(CustomerSystem $customerSystem, $file)
     {
         $path = sprintf(
-            '/www/%s/web/param/xml/%s',
+            '/www/_BACKUP/param/%s/xml/%s',
             $customerSystem->getName(),
             $file
         );
