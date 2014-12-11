@@ -9,7 +9,7 @@ use Symfony\Component\Process\Process;
  * This class retrieves configuration via scp commands
  * This is temporary until the API is able the configuration values
  */
-class ScpDataProvider implements DataProviderInterface
+class SshDataProvider implements DataProviderInterface
 {
     /**
      * @var XmlPathReader
