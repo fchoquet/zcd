@@ -1,5 +1,6 @@
 AppBundle\Entity\ConfigKey:
     type: entity
+    repositoryClass: AppBundle\Entity\ConfigKeyRepository
     table: config_key
     indexes:
         file_path_index:

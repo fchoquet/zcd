@@ -1,3 +1,11 @@
-app:
-    resource: @AppBundle/Controller/
-    type:     annotation
+report_file:
+    path:      /report/file/{file}
+    defaults:  { _controller: AppBundle:Report:file }
+
+report_key:
+    path:      /report/values/{keyId}
+    defaults:  { _controller: AppBundle:Report:values }
+
+report_customers:
+    path:      /report/customers/{valueId}
+    defaults:  { _controller: AppBundle:Report:customers }

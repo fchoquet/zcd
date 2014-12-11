@@ -1,5 +1,6 @@
 AppBundle\Entity\ConfigValue:
     type: entity
+    repositoryClass: AppBundle\Entity\ConfigValueRepository
     table: config_value
     indexes:
         key_value_index:

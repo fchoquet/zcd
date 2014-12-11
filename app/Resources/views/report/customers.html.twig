@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h3>{{ configValue.configKey.file }} > {{ configValue.configKey.path }}</h3>
+    <table>
+        <thead><tr><th>Customer System</th><th>Version</th></tr></thead>
+        {% for cs in configValue.customerSystems %}
+        <tr>
+            <td>{{ cs.name }}</td>
+            <td>{{ cs.version }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+
+{% endblock %}

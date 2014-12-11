@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h3>{{ configKey.file }} > {{ configKey.path }}</h3>
+    <thead><tr><th>Value</th><th>Nb Customers</th></tr></thead>
+    <table>
+        {% for row in data %}
+        <tr>
+            <td>{{ row.value.value }}</td>
+            <td><a href="{{ path('report_customers', {'valueId': row.value.id}) }}">{{ row.nb_cs }}</a></td>
+        </tr>
+        {% endfor %}
+    </table>
+
+{% endblock %}
