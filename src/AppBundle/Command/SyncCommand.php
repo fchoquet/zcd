@@ -34,7 +34,6 @@ class SyncCommand extends ContainerAwareCommand
         'embauche.xml',
         'entretien.xml',
         'forms.xml',
-        'front_office.xml',
         'import.xml',
         'mailing.xml',
         'menu.xml',
