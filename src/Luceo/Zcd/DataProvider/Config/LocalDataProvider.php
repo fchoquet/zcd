@@ -8,7 +8,7 @@ use Symfony\Component\Process\Process;
 /**
  * This class retrieves configuration via local file system
  */
-class ScpDataProvider implements DataProviderInterface
+class LocalProvider implements DataProviderInterface
 {
     /**
      * @var XmlToFlatArrayConverter
