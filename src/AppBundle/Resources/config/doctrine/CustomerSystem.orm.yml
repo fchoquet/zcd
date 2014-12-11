@@ -1,0 +1,16 @@
+AppBundle\Entity\CustomerSystem:
+    type: entity
+    repositoryClass: AppBundle\Entity\CustomerSystemRepository
+    table: customer_system
+    id:
+        id:
+            type: integer
+            generator: { strategy: AUTO }
+    fields:
+        name:
+            type: string
+            length: 100
+        version:
+            type: string
+            length: 50
+

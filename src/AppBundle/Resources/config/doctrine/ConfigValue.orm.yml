@@ -1,0 +1,29 @@
+AppBundle\Entity\ConfigValue:
+    type: entity
+    table: config_value
+    id:
+        id:
+            type: integer
+            generator: { strategy: AUTO }
+    fields:
+        value:
+            type: text
+    manyToOne:
+        configKey:
+            targetEntity: ConfigKey
+            inversedBy: values
+            joinColumn:
+                name: config_key_id
+                referencedColumnName: id
+
+    manyToMany:
+        customerSystems:
+            targetEntity: CustomerSystem
+            joinTable:
+                name: customer_system_config_value
+                joinColumns:
+                    config_value_id:
+                        referencedColumnName: id
+                inverseJoinColumns:
+                    customer_system_id:
+                        referencedColumnName: id

@@ -1,0 +1,8 @@
+services:
+
+    http_client:
+        class: GuzzleHttp\Client
+
+    customer_system_data_provider:
+        class: Luceo\Zcd\DataProvider\CustomerSystem\HalDataProvider
+        arguments: ["@http_client"]

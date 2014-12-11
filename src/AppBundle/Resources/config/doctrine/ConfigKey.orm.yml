@@ -1,0 +1,18 @@
+AppBundle\Entity\ConfigKey:
+    type: entity
+    table: config_key
+    id:
+        id:
+            type: integer
+            generator: { strategy: AUTO }
+    fields:
+        file:
+            type: string
+            length: 100
+        path:
+            type: string
+            length: 255
+    oneToMany:
+        values:
+            targetEntity: ConfigValue
+            mappedBy: configKey
