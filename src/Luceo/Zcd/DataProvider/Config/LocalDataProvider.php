@@ -8,7 +8,7 @@ use Symfony\Component\Process\Process;
 /**
  * This class retrieves configuration via local file system
  */
-class LocalProvider implements DataProviderInterface
+class LocalDataProvider implements DataProviderInterface
 {
     /**
      * @var XmlToFlatArrayConverter
