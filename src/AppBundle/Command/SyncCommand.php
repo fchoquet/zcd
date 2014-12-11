@@ -56,7 +56,8 @@ class SyncCommand extends ContainerAwareCommand
     {
         $this
             ->setName('zcd:sync')
-            ->setDescription('Synchronizes the local database');
+            ->setDescription('Synchronizes the local database')
+            ->addOption('force', null, InputOption::VALUE_NONE, 'If set, allows to overwrite existing data');
     }
 
     protected function execute(InputInterface $input, OutputInterface $output)
@@ -69,8 +70,8 @@ class SyncCommand extends ContainerAwareCommand
         /** @var CustomerSystemRepository $repository */
         $repository = $this->em->getRepository('AppBundle:CustomerSystem');
 
-        if ($repository->hasData()) {
-            throw new \RuntimeException('The database is not empty');
+        if ($repository->hasData() && ! $input->getOption('force')) {
+            throw new \RuntimeException('The database is not empty. Use --force option');
         }
 
         $this->connection->exec('DELETE FROM customer_system_config_value');
