@@ -141,15 +141,13 @@ class SyncCommand extends ContainerAwareCommand
      */
     private function makeSureKeyExist($file, $path)
     {
-        $statement = $this->connection->prepare(
-            'SELECT id FROM config_key WHERE file = :file AND path = :path'
+        $id = $this->connection->fetchColumn(
+            'SELECT id FROM config_key WHERE file = :file AND path = :path LIMIT 1',
+            array(
+                'file' => $file,
+                'path' => $path,
+            )
         );
-
-        $statement->bindValue('file', $file);
-        $statement->bindValue('path', $path);
-        $rows = $statement->fetchColumn(0);
-        $id = isset($rows[0]) ? $rows[0] : null;
-        $statement->closeCursor();
 
         if ($id) {
             return $id;
@@ -168,15 +166,13 @@ class SyncCommand extends ContainerAwareCommand
 
     private function makeSureValueExist($keyId, $value)
     {
-        $statement = $this->connection->prepare(
-            'SELECT id FROM config_value WHERE config_key_id = :config_key_id AND value_hash = :value_hash'
+        $id = $this->connection->fetchColumn(
+            'SELECT id FROM config_value WHERE config_key_id = :config_key_id AND value_hash = :value_hash LIMIT 1',
+            array(
+                'config_key_id' => $keyId,
+                'value_hash' => sha1($value),
+            )
         );
-
-        $statement->bindValue('config_key_id', $keyId);
-        $statement->bindValue('value_hash', sha1($value));
-        $rows = $statement->fetchColumn(0);
-        $id = isset($rows[0]) ? $rows[0] : null;
-        $statement->closeCursor();
 
         if ($id) {
             return $id;
