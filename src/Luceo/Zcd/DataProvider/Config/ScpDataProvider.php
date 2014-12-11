@@ -40,14 +40,24 @@ class ScpDataProvider implements DataProviderInterface
         $process = new Process($cmd);
         $process->run();
         if (!$process->isSuccessful()) {
+            if ($process->getExitCode() == 1) {
+                // Error 1 is probably not a ssh error, so it's the cat command
+                // We ignore
+                return array();
+            }
             throw new \RuntimeException($process->getErrorOutput());
         }
 
         $xml = $process->getOutput();
 
-        // Cleanup the unwanter "Killed by signal 1." string at the end
+        // Cleanup the unwanted "Killed by signal 1." string at the end
         $xml = trim(str_replace('Killed by signal 1.', '', $xml));
 
-        return $this->converter->getArray($xml);
+        try {
+            return $this->converter->getArray($xml);
+        } catch (\RuntimeException $e) {
+            // Not a valid xml, so the client system is probably not active
+            return array();
+        }
     }
 }
