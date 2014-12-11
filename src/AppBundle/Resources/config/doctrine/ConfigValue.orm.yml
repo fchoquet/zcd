@@ -1,6 +1,9 @@
 AppBundle\Entity\ConfigValue:
     type: entity
     table: config_value
+    indexes:
+        key_value_index:
+            columns: [ config_key_id, value_hash ]
     id:
         id:
             type: integer
@@ -8,6 +11,11 @@ AppBundle\Entity\ConfigValue:
     fields:
         value:
             type: text
+        valueHash:
+            column: value_hash
+            type: string
+            length: 160
+
     manyToOne:
         configKey:
             targetEntity: ConfigKey

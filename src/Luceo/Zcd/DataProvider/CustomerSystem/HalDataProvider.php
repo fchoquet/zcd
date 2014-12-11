@@ -53,7 +53,9 @@ class HalDataProvider implements DataProviderInterface
                 continue;
             }
 
-            $customerSystems[] = new CustomerSystem($csData['code'], $csData['version']);
+            $name = str_replace('-dev.com', '.com', $csData['domain_name']);
+
+            $customerSystems[] = new CustomerSystem($name, $csData['version']);
         }
 
         return $customerSystems;

@@ -6,3 +6,6 @@ services:
     customer_system_data_provider:
         class: Luceo\Zcd\DataProvider\CustomerSystem\HalDataProvider
         arguments: ["@http_client"]
+
+    config_data_provider:
+        class: Luceo\Zcd\DataProvider\Config\ScpDataProvider

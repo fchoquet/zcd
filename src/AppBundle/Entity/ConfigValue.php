@@ -16,6 +16,11 @@ class ConfigValue
     private $value;
 
     /**
+     * @var string
+     */
+    private $valueHash;
+
+    /**
      * @var ConfigKey
      */
     private $configKey;
@@ -26,14 +31,13 @@ class ConfigValue
     private $customerSystems;
 
     /**
-     * @param $configKey
+     * @param ConfigKey $configKey
      * @param $value
      */
-    function __construct($configKey, $value)
+    public function __construct(ConfigKey $configKey, $value)
     {
         $this->configKey = $configKey;
-        $this->value = $value;
-
+        $this->setValue($value);
         $this->customerSystems = new ArrayCollection();
     }
 
@@ -44,16 +48,6 @@ class ConfigValue
     public function getConfigKey()
     {
         return $this->configKey;
-    }
-
-    /**
-     * @param ConfigKey $configKey
-     * @return $this
-     */
-    public function setConfigKey(ConfigKey $configKey)
-    {
-        $this->configKey = $configKey;
-        return $this;
     }
 
     /**
@@ -83,16 +77,6 @@ class ConfigValue
     }
 
     /**
-     * @param string $value
-     * @return $this
-     */
-    public function setValue($value)
-    {
-        $this->value = $value;
-        return $this;
-    }
-
-    /**
      * @return CustomerSystem[]
      */
     public function getCustomerSystems()
@@ -108,5 +92,24 @@ class ConfigValue
     {
         $this->customerSystems[] = $customerSystem;
         return $this;
+    }
+
+    /**
+     * @param string $value
+     * @return $this
+     */
+    public function setValue($value)
+    {
+        $this->value = $value;
+        $this->valueHash = sha1($value);
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getValueHash()
+    {
+        return $this->valueHash;
     }
 }

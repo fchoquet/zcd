@@ -1,6 +1,9 @@
 AppBundle\Entity\ConfigKey:
     type: entity
     table: config_key
+    indexes:
+        file_path_index:
+            columns: [ file, path ]
     id:
         id:
             type: integer

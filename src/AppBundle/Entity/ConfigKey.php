@@ -47,16 +47,6 @@ class ConfigKey
     }
 
     /**
-     * @param string $file
-     * @return $this
-     */
-    public function setFile($file)
-    {
-        $this->file = $file;
-        return $this;
-    }
-
-    /**
      * @return int
      */
     public function getId()
@@ -80,16 +70,6 @@ class ConfigKey
     public function getPath()
     {
         return $this->path;
-    }
-
-    /**
-     * @param string $path
-     * @return $this
-     */
-    public function setPath($path)
-    {
-        $this->path = $path;
-        return $this;
     }
 
     /**
