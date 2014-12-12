@@ -8,4 +8,4 @@ services:
         arguments: ["@http_client"]
 
     config_data_provider:
-        class: Luceo\Zcd\DataProvider\Config\LocalDataProvider
+        class: Luceo\Zcd\DataProvider\Config\SshDataProvider

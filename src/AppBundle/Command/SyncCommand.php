@@ -111,9 +111,14 @@ class SyncCommand extends ContainerAwareCommand
         $dataProvider = $this->getContainer()->get('config_data_provider');
 
         foreach ($this->xmlFiles as $xmlFile) {
-            $output->write(sprintf('- importing %s ...', $xmlFile));
+            $output->writeln(sprintf('- importing %s', $xmlFile));
 
-            foreach ($dataProvider->getConfiguration($customerSystem, $xmlFile) as $xPath => $value) {
+            $output->write('   * download xml ... ');
+            $xmlConfig =  $dataProvider->getConfiguration($customerSystem, $xmlFile);
+            $output->writeln('<info>done</info>');
+
+            $output->write('   * insert data ... ');
+            foreach ($xmlConfig as $xPath => $value) {
                 $keyId = $this->makeSureKeyExist($xmlFile, $xPath);
                 $valueId = $this->makeSureValueExist($keyId, $value);
 
@@ -127,7 +132,6 @@ class SyncCommand extends ContainerAwareCommand
 
                 unset($valueId);
             }
-
             $output->writeln('<info>done</info>');
         }
     }
